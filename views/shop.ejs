@@ -1,0 +1,28 @@
+<%- include('includes/head.ejs')%>
+</head>
+<%- include('includes/navigation.ejs')%>
+    <main>
+        <% if(prods.length > 0) {%>
+            <% for(let product of prods ) {%>
+                <div class="grid">
+                    <article class="card product-item">
+                        <header class="card__header">
+                            <h1 class="product__title"><%= product.title %></h1>
+                        </header>
+                        <div class="card__image">
+                            <img src="https://store.storeimages.cdn-apple.com/8755/as-images.apple.com/is/image/AppleInc/aos/published/images/m/bp/mbp13/space/mbp13-space-select-201807_GEO_TW?wid=452&amp;hei=420&amp;fmt=jpeg&amp;qlt=95&amp;op_usm=0.5,0.5&amp;.v=1530049922897" />
+                        </div>
+                        <div class="card__content">
+                            <h2 class="product__price">$19.99</h2>
+                            <p class="product__description">Super note book</p>
+                        </div>
+                        <div class="card__action"><button class="btn">Add to Card</button></div>
+                    </article>
+                </div>
+            <% } %>
+        <% } else { %>
+            <h1>no Product found</h1>
+        <% } %>
+    </main>
+
+<%- include('includes/end.ejs') %>
