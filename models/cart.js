@@ -17,8 +17,10 @@ module.exports = class Cart {
 
         fs.readFile(p, (err, fileContent) => {
             let cart = {products: [], totalPrice: 0}
-            if(!err){
+
+            if(!err && fileContent){
                 cart = JSON.parse(fileContent)
+                cart = cart.products ? cart : {products: [], totalPrice: 0}
             }
 
             const existingProductIndex = cart.products.findIndex(prod => prod.id === id)
@@ -40,5 +42,22 @@ module.exports = class Cart {
             })
         })
 
+    }
+
+    static deleteProduct(id, productPrice){
+        fs.readFile(p, (err, fileContent) => {
+            if(err){
+                return
+            }
+            const updateProduct = JSON.parse(fileContent)
+            const product = updateProduct.products.find(prod => [prod.id === id])
+            const productQty = product.qty
+            updateProduct.products = updateProduct.products.filter(prod => prod.id !== id)
+            updateProduct.totalPrice = updateProduct.totalPrice - productPrice * productQty
+
+            fs.writeFile(p, JSON.stringify(updateProduct), err => {
+                console.log(err)
+            })
+        })
     }
 }
