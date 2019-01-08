@@ -4,12 +4,13 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const expressHbs = require('express-handlebars')
 
+const db = require('./util/database')
+
 const adminRoutes = require('./routes/admin')
 const shopRoutes = require('./routes/shop')
 const rootDir = require('./util/path')
 
 const errorControll = require('./controllers/error')
-
 
 const app = express()
 
